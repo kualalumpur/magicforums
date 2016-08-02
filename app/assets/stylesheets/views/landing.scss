@@ -1,0 +1,137 @@
+
+@import "font-awesome";
+
+.background {
+  background-image: asset-url("forest-mountain.jpg");
+  height: calc(100vh - 52px); //height: 100vh;
+  width: 100%;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white
+}
+
+
+.background-2 {
+  // background-image: asset-url("polarbear.jpg");
+  background-color: teal;
+  height: 50vh;
+  width: 100%;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  color: white;
+  align-items: center;
+  justify-content: center;
+}
+
+.features-container {
+  margin: 50px 0;
+}
+
+.images-container {
+  margin: 0;
+}
+
+.images {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.features {
+  max-width: 1200px;
+  margin: 50px auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  // justify-content: space-around;
+  // justify-content: space-between;
+  // justify-content: flex-end;
+}
+
+
+.footer {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.feature {
+  flex: 0 0 280px;
+  // flex: 1 0
+  margin: 20px 10px;
+}
+
+.image {
+  flex: 0 0 25%;
+  //margin: 0;
+  //width: 100%;
+  position: relative;
+  &:hover .invisible-layout {
+    opacity: 1;
+    transition: all 0.3s ease-in-out;
+  }
+}
+
+
+// .feature-2 {
+//   flex: 3 0;
+// }
+//
+
+
+.image-box {
+  width: 100%;
+}
+
+.icon-setting {
+  font-size: 50;
+  color: teal;
+}
+
+.invisible-layout {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+}
+
+.content-hover {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-color: white;
+  opacity: 0.5;
+}
+
+.short-underline {
+  width: 80px;
+  border-bottom: 10px solid teal;
+}
+
+@media all and (max-width: 1199px) {
+    .features {
+      max-width: 600px;
+    }
+    .image {
+      flex: 0 0 50%;
+    }
+  }
+
+@media all and (max-width: 600px) {
+  .image {
+    flex: 0 0 100%;
+  }
+}
