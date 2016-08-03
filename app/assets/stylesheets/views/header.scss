@@ -1,27 +1,28 @@
-#header {
-  height: 52px;
-  z-index: 1;
-}
+.header {
+  // header page stylesheets here
 
+  #header {
+    height: 52px;
+    z-index: 1;
+  }
 
+  .navbar-default .navbar-brand {
+      color: white;
+      font-family:    "Trebuchet MS";
+      font-size:      30px;
+  }
 
-
-.navbar-default .navbar-brand {
-    color: white;
-    font-family:    "Trebuchet MS";
+  .navbar {
+    margin-bottom: 0;
+    background-color: teal;
+    font-family:    Verdana;
     font-size:      30px;
-}
+    border-color: transparent;
+  }
 
-.navbar {
-  margin-bottom: 0;
-  background-color: teal;
-  font-family:    Verdana;
-  font-size:      30px;
-  border-color: transparent;
-}
-
-.navbar .nav > li > a, .navbar .nav > li > a:hover,
-.navbar .nav > li.current-menu-item > a,
-.navbar .nav > li.current-menu-ancestor > a {
-  color:          white;
+  .navbar .nav > li > a, .navbar .nav > li > a:hover,
+  .navbar .nav > li.current-menu-item > a,
+  .navbar .nav > li.current-menu-ancestor > a {
+    color:          white;
+  }
 }

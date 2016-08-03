@@ -1,0 +1,15 @@
+<div class="topics">
+  <!-- topics page html in here -->
+
+  <!-- <h1>Topics</h1> -->
+  <div class="flex-parent text-center">
+
+    <% @topics.each do |topic| %>
+      <div class="flex-child">
+        <h3><%= link_to topic.title, topic_path(topic) %></h3>
+        <h5><%= topic.description %></h5>
+      </div>
+    <% end %>
+  </div>
+
+</div>
