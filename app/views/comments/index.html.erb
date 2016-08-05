@@ -1,0 +1,24 @@
+<div class="comments">
+  <!-- comments page html in here -->
+
+  <!-- <h1>Comments</h1> -->
+  <div class="flex-parent text-center">
+
+    <% @comments.each do |comment| %>
+      <div class="flex-child">
+        <h4><%= comment.body %></h4>
+        <%= link_to edit_topic_post_comment_path(@topic, @post, comment) do %>
+        <%= fa_icon 'edit 2x', class: 'btn btn-success btn-lg' %>
+        <% end %>
+        <%= link_to topic_post_comment_path(@topic, @post, comment), method: :delete, data: { confirm: "Delete?" } do %>
+        <%= fa_icon 'trash 2x', class: 'btn btn-success btn-lg' %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+<div class="newbutton text-center">
+  <%= link_to 'Add New Comment', new_topic_post_comment_path, :class => 'btn btn-success btn-lg' %>
+</div>
+
+</div>

@@ -2,8 +2,10 @@ Rails.application.routes.draw do
 
   root to: 'landing#index'
   get :about, to: 'static_pages#about'
-  resources :topics, except: [:show] do
-    resources :posts, except: [:show]
+  resources :topics do
+   resources :posts do
+     resources :comments
+   end
   end
 
   get :testindex, to: 'landing#testindex' # terrence's testing
