@@ -1,7 +1,10 @@
 <div class="topics">
   <!-- topics page html in here -->
+  <div class="flex-child text-center">
+    <h1>Topics</h1>
+    <%= link_to 'Add New Topic', new_topic_path, :class => 'btn btn-success btn-lg' %>
+  </div>
 
-  <!-- <h1>Topics</h1> -->
   <div class="flex-parent text-center">
 
     <% @topics.each do |topic| %>
@@ -17,9 +20,5 @@
       </div>
     <% end %>
   </div>
-
-<div class="newbutton text-center">
-  <%= link_to 'Add New Topic', new_topic_path, :class => 'btn btn-success btn-lg' %>
-</div>
 
 </div>

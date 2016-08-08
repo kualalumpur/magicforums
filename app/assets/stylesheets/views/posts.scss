@@ -1,9 +1,17 @@
 .posts {
   // about page stylesheets here
+
+  background-image: asset-url("forestlake.jpg");
+  height: auto;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 15px;
+
   .flex-parent {
     display: flex;
     justify-content: center;
-    align-items: center;
+    // align-items: center;
     flex-wrap: wrap;
 
     margin: 80px;
@@ -15,11 +23,17 @@
     margin: 5px;
     padding: 20px;
     border: 4px solid teal;
+
+    background-color: white;
+    opacity: 0.8;
   }
 
   .btn-success, .btn-success:hover, .btn-success:active, .btn-success:visited {
     background-color: teal !important;
   }
 
+  a:hover {
+    text-decoration: none  !important;
+  }
 
 }

@@ -1,13 +1,20 @@
 <div class="posts">
   <!-- posts page html in here -->
 
-  <!-- <h1>Posts</h1> -->
+  <div class="flex-child text-center">
+    <h1><%="#{@topic.title}"%></h1>
+    <%= link_to 'Add New Post', new_topic_post_path, :class => 'btn btn-success btn-lg' %>
+  </div>
+
   <div class="flex-parent text-center">
 
     <% @posts.each do |post| %>
       <div class="flex-child">
         <h3><%= link_to post.title, topic_post_comments_path(@topic, post) %></h3>
         <h4><%= post.body %></h4>
+        <% if post.image? %>
+          <%= image_tag post.image, class: "img-settings img-responsive center-block" %>
+        <% end %>
         <%= link_to edit_topic_post_path(@topic, post) do %>
         <%= fa_icon 'edit 2x', class: 'btn btn-success btn-lg' %>
         <% end %>
@@ -17,9 +24,5 @@
       </div>
     <% end %>
   </div>
-
-<div class="newbutton text-center">
-  <%= link_to 'Add New Post', new_topic_post_path, :class => 'btn btn-success btn-lg' %>
-</div>
 
 </div>

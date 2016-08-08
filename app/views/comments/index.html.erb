@@ -1,12 +1,18 @@
 <div class="comments">
   <!-- comments page html in here -->
+  <div class="flex-child text-center">
+    <h1><%="#{@post.title}"%></h1>
+    <%= link_to 'Add New Comment', new_topic_post_comment_path, :class => 'btn btn-success btn-lg' %>
+  </div>
 
-  <!-- <h1>Comments</h1> -->
   <div class="flex-parent text-center">
 
     <% @comments.each do |comment| %>
       <div class="flex-child">
         <h4><%= comment.body %></h4>
+        <% if comment.image? %>
+          <%= image_tag comment.image, class: "img-settings img-responsive center-block" %>
+        <% end %>
         <%= link_to edit_topic_post_comment_path(@topic, @post, comment) do %>
         <%= fa_icon 'edit 2x', class: 'btn btn-success btn-lg' %>
         <% end %>
@@ -16,9 +22,5 @@
       </div>
     <% end %>
   </div>
-
-<div class="newbutton text-center">
-  <%= link_to 'Add New Comment', new_topic_post_comment_path, :class => 'btn btn-success btn-lg' %>
-</div>
 
 </div>

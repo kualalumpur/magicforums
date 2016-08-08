@@ -18,8 +18,10 @@ class CommentsController < ApplicationController
    @comment = Comment.new(comment_params.merge(post_id: params[:post_id]))
 
    if @comment.save
+     flash[:success] = "You've created a new comment."
      redirect_to topic_post_comments_path(@topic, @post)
    else
+     flash[:danger] = @topic.errors.full_messages
      redirect_to new_topic_post_comment_path(@topic, @post)
    end
  end
@@ -36,8 +38,10 @@ class CommentsController < ApplicationController
    @comment = Comment.find_by(id: params[:id])
 
    if @comment.update(comment_params)
+     flash[:success] = "You've updated the comment."
      redirect_to topic_post_comments_path(@topic, @post)
    else
+     flash[:danger] = @topic.errors.full_messages
      redirect_to edit_topic_post_comment_path(@topic, @post, @comment)
    end
  end
@@ -48,6 +52,7 @@ class CommentsController < ApplicationController
    @post = @comment.post
 
    if @comment.destroy
+     flash[:success] = "You've deleted the comment."
      redirect_to topic_post_comments_path(@topic, @post)
    end
  end
@@ -55,6 +60,6 @@ class CommentsController < ApplicationController
  private
 
  def comment_params
-   params.require(:comment).permit(:title, :body)
+   params.require(:comment).permit(:image, :body)
  end
 end
