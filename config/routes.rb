@@ -7,6 +7,8 @@ Rails.application.routes.draw do
       resources :comments, except: [:show]
     end
   end
+  resources :users, only: [:new, :edit, :create, :update]
+  resources :sessions, only: [:new, :create, :destroy]
 
   get :testindex, to: 'landing#testindex' # terrence's testing
   get :test, to: 'test#testing' # terrence's testing

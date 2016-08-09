@@ -17,6 +17,16 @@
           <ul class="nav navbar-nav navbar-right">
             <li><%= link_to "About", about_path %></li>
             <li><%= link_to "Topics", topics_path %></li>
+            <li><% if current_user %>
+              <%= link_to "Account", edit_user_path(session) %>
+            <% else %>
+              <%= link_to "Register", new_user_path %>
+            <% end %></li>
+            <li><% if current_user %>
+              <%= link_to "Logout", session_path(session), method: :delete %>
+            <% else %>
+              <%= link_to "Login", new_session_path %>
+            <% end %></li>
           </ul>
         </div>
       </div>
