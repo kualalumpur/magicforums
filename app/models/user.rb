@@ -6,4 +6,5 @@ class User < ApplicationRecord
   mount_uploader :image, ImageUploader
   validates :email, length: { minimum: 10 }, presence: true
   validates :username, length: { minimum: 5 }, presence: true
+  enum role: [:user, :moderator, :admin]
 end

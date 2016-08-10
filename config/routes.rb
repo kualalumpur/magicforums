@@ -9,6 +9,12 @@ Rails.application.routes.draw do
   end
   resources :users, only: [:new, :edit, :create, :update]
   resources :sessions, only: [:new, :create, :destroy]
+  resources :password_resets, only: [:new, :create, :edit, :update]
+
+
+  # get :resetpassword, to: 'password_resets#new'
+  # post :password_resets, to: 'password_resets#edit'
+  # patch :password_reset, to: 'password_resets#update'
 
   get :testindex, to: 'landing#testindex' # terrence's testing
   get :test, to: 'test#testing' # terrence's testing

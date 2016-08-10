@@ -17,8 +17,8 @@ class CommentsController < ApplicationController
     @post = Post.find_by(id: params[:post_id])
     @topic = @post.topic
     # @comment = Comment.new(comment_params.merge(post_id: params[:post_id]))
-    @comment = current_user.comments.build(comment_params)
-    
+    @comment = current_user.comments.build(comment_params.merge(post_id: params[:post_id]))
+
     if @comment.save
      flash[:success] = "You've created a new comment."
      redirect_to topic_post_comments_path(@topic, @post)
@@ -32,12 +32,14 @@ class CommentsController < ApplicationController
     @post = Post.find_by(id: params[:post_id])
     @topic = @post.topic
     @comment = Comment.find_by(id: params[:id])
+    authorize @comment
   end
 
   def update
     @post = Post.find_by(id: params[:post_id])
     @topic = @post.topic
     @comment = Comment.find_by(id: params[:id])
+    authorize @comment
 
     if @comment.update(comment_params)
      flash[:success] = "You've updated the comment."
@@ -52,6 +54,7 @@ class CommentsController < ApplicationController
     @comment = Comment.find_by(id: params[:id])
     @topic = @comment.post.topic
     @post = @comment.post
+    authorize @comment
 
     if @comment.destroy
      flash[:success] = "You've deleted the comment."

@@ -6,6 +6,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+
     if @user.save
       flash[:success] = "You've created a new user."
       redirect_to topics_path
@@ -18,10 +19,12 @@ class UsersController < ApplicationController
   def edit
     @user ||= User.find_by(id: session[:id])
     # @user = User.find_by(id: params[:id])
+    authorize @user
   end
 
   def update
     @user = User.find_by(id: params[:id])
+    authorize @user
 
     if @user.update(user_params)
       flash[:success] = "You've updated the user."

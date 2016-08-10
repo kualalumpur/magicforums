@@ -14,7 +14,8 @@ class PostsController < ApplicationController
   def create
     @topic = Topic.find_by(id: params[:topic_id])
     # @post = Post.new(post_params.merge(topic_id: params[:topic_id]))
-    @post = current_user.posts.build(post_params)
+    @post = current_user.posts.build(post_params.merge(topic_id: params[:topic_id]))
+
     if @post.save
       flash[:success] = "You've created a new post."
       redirect_to topic_posts_path(@topic)
@@ -27,6 +28,7 @@ class PostsController < ApplicationController
   def edit
     @post = Post.find_by(id: params[:id])
     @topic = @post.topic
+    authorize @post
   end
 
   def update
@@ -34,6 +36,7 @@ class PostsController < ApplicationController
     @post = Post.find_by(id: params[:id])
   #  @post = Post.find(params[:id])
     @topic = @post.topic
+    authorize @post
 
     if @post.update(post_params)
       flash[:success] = "You've updated the post."
@@ -47,6 +50,7 @@ class PostsController < ApplicationController
   def destroy
     @post = Post.find_by(id: params[:id])
     @topic = @post.topic
+    authorize @post
 
     if @post.destroy
       flash[:success] = "You've deleted the post."
