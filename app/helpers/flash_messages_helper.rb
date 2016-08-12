@@ -8,4 +8,5 @@ module FlashMessagesHelper
       value.collect { |message| content_tag(:li, message, class: 'list-styling') }.join.html_safe
     end
   end
+
 end

@@ -1,0 +1,21 @@
+<%= paginator.render do %>
+  <nav>
+    <ul class="pagination pagination-lg">
+      <% if controller_name == 'posts' %>
+      <li class="page-item"><%= link_to 'Back to Topics', topics_path, :class => 'page-link' %></li>
+      <% elsif controller_name == 'comments' %>
+      <% topic = Post.includes(:comments).find_by(id: params[:post_id]).topic %>
+      <li class="page-item"><%= link_to 'Back to Posts', topic_posts_path(topic), :class => 'page-link' %></li>
+      <% end %>
+      <%= first_page_tag unless current_page.first? %>
+      <%= prev_page_tag unless current_page.first? %>
+      <% each_page do |page| %>
+        <% if page.left_outer? || page.right_outer? || page.inside_window? %>
+          <%= page_tag page %>
+        <% end %>
+      <% end %>
+      <%= next_page_tag unless current_page.last? %>
+      <%= last_page_tag unless current_page.last? %>
+    </ul>
+  </nav>
+<% end %>

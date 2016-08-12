@@ -1,15 +1,11 @@
 class CommentsController < ApplicationController
-  before_action :authenticate!, only: [:create, :edit, :update, :new, :destroy]
+  respond_to :js
+  before_action :authenticate!, only: [:create, :edit, :update, :destroy]
 
   def index
     @post = Post.includes(:comments).find_by(id: params[:post_id])
     @topic = @post.topic
-    @comments = @post.comments.order("created_at DESC")
-  end
-
-  def new
-    @post = Post.find_by(id: params[:post_id])
-    @topic = @post.topic
+    @comments = @post.comments.order("created_at DESC").page params[:page]
     @comment = Comment.new
   end
 
@@ -18,13 +14,12 @@ class CommentsController < ApplicationController
     @topic = @post.topic
     # @comment = Comment.new(comment_params.merge(post_id: params[:post_id]))
     @comment = current_user.comments.build(comment_params.merge(post_id: params[:post_id]))
+    @new_comment = Comment.new
 
     if @comment.save
-     flash[:success] = "You've created a new comment."
-     redirect_to topic_post_comments_path(@topic, @post)
+      flash.now[:success] = "You've created a new comment."
     else
-     flash[:danger] = @comment.errors.full_messages
-     redirect_to new_topic_post_comment_path(@topic, @post)
+      flash.now[:danger] = @comment.errors.full_messages
     end
   end
 
@@ -42,11 +37,9 @@ class CommentsController < ApplicationController
     authorize @comment
 
     if @comment.update(comment_params)
-     flash[:success] = "You've updated the comment."
-     redirect_to topic_post_comments_path(@topic, @post)
+      flash.now[:success] = "You've updated the comment."
     else
-     flash[:danger] = @comment.errors.full_messages
-     redirect_to edit_topic_post_comment_path(@topic, @post, @comment)
+      flash.now[:danger] = @comment.errors.full_messages
     end
   end
 
@@ -57,8 +50,7 @@ class CommentsController < ApplicationController
     authorize @comment
 
     if @comment.destroy
-     flash[:success] = "You've deleted the comment."
-     redirect_to topic_post_comments_path(@topic, @post)
+      flash.now[:success] = "You've deleted the comment."
     end
   end
 

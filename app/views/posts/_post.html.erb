@@ -1,0 +1,13 @@
+<div class="flex-child">
+  <h3><%= link_to post.title, topic_post_comments_path(@topic, post) %></h3>
+  <h4><%= post.body %></h4>
+  <% if post.image? %>
+    <%= image_tag post.image, class: "img-settings img-responsive center-block" %>
+  <% end %>
+  <%= link_to edit_topic_post_path(@topic, post) do %>
+  <%= fa_icon 'edit 2x', class: 'btn btn-success btn-lg' %>
+  <% end %>
+  <%= link_to topic_post_path(@topic, post), method: :delete, data: { confirm: "Delete?" } do %>
+  <%= fa_icon 'trash 2x', class: 'btn btn-success btn-lg' %>
+  <% end %>
+</div>

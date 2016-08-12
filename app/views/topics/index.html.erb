@@ -6,19 +6,16 @@
   </div>
 
   <div class="flex-parent text-center">
+    <div id="topics">
+      <% @topics.each do |topic| %>
+        <%= render partial: "topic", locals: { topic: topic } %>
+      <% end %>
+    </div>
 
-    <% @topics.each do |topic| %>
-      <div class="flex-child">
-        <h3><%= link_to topic.title, topic_posts_path(topic) %></h3>
-        <h4><%= topic.description %></h4>
-        <%= link_to edit_topic_path(topic) do %>
-        <%= fa_icon 'edit 2x', class: 'btn btn-success btn-lg' %>
-        <% end %>
-        <%= link_to topic_path(topic), method: :delete, data: { confirm: "Delete?" } do %>
-        <%= fa_icon 'trash 2x', class: 'btn btn-success btn-lg' %>
-        <% end %>
-      </div>
-    <% end %>
+    <div id="topics-form-container">
+      <%= render partial: "form", locals: { topic: @topic } %>
+    </div>
+
   </div>
 
 </div>

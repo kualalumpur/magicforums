@@ -19,12 +19,12 @@ class UsersController < ApplicationController
   def edit
     @user ||= User.find_by(id: session[:id])
     # @user = User.find_by(id: params[:id])
-    authorize @user
+    # authorize @user
   end
 
   def update
     @user = User.find_by(id: params[:id])
-    authorize @user
+    # authorize @user
 
     if @user.update(user_params)
       flash[:success] = "You've updated the user."

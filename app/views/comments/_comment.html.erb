@@ -1,0 +1,12 @@
+  <div id="comment-edit-form"><div id="comment-delete">
+    <h4><%= comment.body %></h4>
+    <% if comment.image? %>
+      <%= image_tag comment.image, class: "img-settings img-responsive center-block" %>
+    <% end %>
+    <%= link_to edit_topic_post_comment_path(@topic, @post, comment), remote: true do %>
+    <%= fa_icon 'edit 2x', class: 'btn btn-success btn-lg' %>
+    <% end %>
+    <%= link_to topic_post_comment_path(@topic, @post, comment), remote: true, method: :delete, data: { confirm: "Delete?" } do %>
+    <%= fa_icon 'trash 2x', class: 'btn btn-success btn-lg' %>
+    <% end %>
+  </div></div>

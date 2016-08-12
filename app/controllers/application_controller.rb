@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
 
   def current_user
     return unless session[:id]
-    @user ||= User.find_by(id: session[:id]) 
+    @user ||= User.find_by(id: session[:id])
   end
   helper_method :current_user
 
@@ -21,4 +21,5 @@ class ApplicationController < ActionController::Base
       flash[:danger] = "You need to login first."
     end
   end
+
 end

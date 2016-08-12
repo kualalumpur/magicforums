@@ -2,26 +2,24 @@
   <!-- comments page html in here -->
   <div class="flex-child text-center">
     <h1><%="#{@post.title}"%></h1>
-    <%= link_to 'Back to Posts', topic_posts_path(@topic), :class => 'btn btn-success btn-lg' %>
-    <%= link_to 'Add New Comment', new_topic_post_comment_path, :class => 'btn btn-success btn-lg' %>
+    <!-- <%= link_to 'Back to Posts', topic_posts_path(@topic), :class => 'btn btn-success btn-lg' %> -->
+    <%= paginate @comments %>
   </div>
 
   <div class="flex-parent text-center">
 
-    <% @comments.each do |comment| %>
+    <div id="comments">
+      <% @comments.each do |comment| %>
       <div class="flex-child">
-        <h4><%= comment.body %></h4>
-        <% if comment.image? %>
-          <%= image_tag comment.image, class: "img-settings img-responsive center-block" %>
-        <% end %>
-        <%= link_to edit_topic_post_comment_path(@topic, @post, comment) do %>
-        <%= fa_icon 'edit 2x', class: 'btn btn-success btn-lg' %>
-        <% end %>
-        <%= link_to topic_post_comment_path(@topic, @post, comment), method: :delete, data: { confirm: "Delete?" } do %>
-        <%= fa_icon 'trash 2x', class: 'btn btn-success btn-lg' %>
-        <% end %>
+        <%= render partial: "comment", locals: { comment: comment, post: @post } %>
       </div>
-    <% end %>
+      <% end %>
+    </div>
+
+    <div id="comments-form-container">
+      <%= render partial: "form", locals: { comment: @comment, post: @post } %>
+    </div>
+
   </div>
 
 </div>

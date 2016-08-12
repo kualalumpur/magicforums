@@ -26,6 +26,12 @@ gem 'fog-aws'
 gem "mini_magick"
 
 gem "pundit"
+
+gem 'responders'
+
+gem 'remotipart', github: 'sr3d/remotipart'
+
+gem 'kaminari'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
