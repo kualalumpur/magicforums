@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :edit, :create, :update]
   resources :sessions, only: [:new, :create, :destroy]
   resources :password_resets, only: [:new, :create, :edit, :update]
-
+  mount ActionCable.server => '/cable'
 
   # get :resetpassword, to: 'password_resets#new'
   # post :password_resets, to: 'password_resets#edit'

@@ -1,3 +1,3 @@
 $('#flash-messages-container').html("<%=j render partial: 'partials/flash_messages' %>")
 
-$('#comment-delete').replaceAll("<%=j render partial: 'comments/comment', locals: { comment: @comment, post: @post, topic: @topic } %>")
+$('.comment[data-id=<%=@comment.id%>]').replaceAll("<%=j render partial: 'comments/comment', locals: { comment: @comment, post: @post, topic: @topic, extra_class: '' } %>")

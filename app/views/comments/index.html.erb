@@ -1,4 +1,4 @@
-<div class="comments">
+<div class="comments index" data-id="<%=@post.id%>">
   <!-- comments page html in here -->
   <div class="flex-child text-center">
     <h1><%="#{@post.title}"%></h1>
@@ -10,9 +10,7 @@
 
     <div id="comments">
       <% @comments.each do |comment| %>
-      <div class="flex-child">
-        <%= render partial: "comment", locals: { comment: comment, post: @post } %>
-      </div>
+        <%= render partial: "comment", locals: {comment: comment, post: @post, extra_class: ''} %>
       <% end %>
     </div>
 

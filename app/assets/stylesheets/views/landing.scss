@@ -121,13 +121,13 @@
   }
 
   @media all and (max-width: 1199px) {
-      .features {
-        max-width: 600px;
-      }
-      .image {
-        flex: 0 0 50%;
-      }
+    .features {
+      max-width: 600px;
     }
+    .image {
+      flex: 0 0 50%;
+    }
+  }
 
   @media all and (max-width: 600px) {
     .image {

@@ -17,6 +17,7 @@ class CommentsController < ApplicationController
     @new_comment = Comment.new
 
     if @comment.save
+      CommentBroadcastJob.perform_later("create", @comment)
       flash.now[:success] = "You've created a new comment."
     else
       flash.now[:danger] = @comment.errors.full_messages
@@ -38,6 +39,7 @@ class CommentsController < ApplicationController
 
     if @comment.update(comment_params)
       flash.now[:success] = "You've updated the comment."
+      CommentBroadcastJob.set(wait: 0.1.seconds).perform_later("update", @comment)
     else
       flash.now[:danger] = @comment.errors.full_messages
     end
@@ -51,6 +53,7 @@ class CommentsController < ApplicationController
 
     if @comment.destroy
       flash.now[:success] = "You've deleted the comment."
+      CommentBroadcastJob.perform_now("destroy", @comment)
     end
   end
 

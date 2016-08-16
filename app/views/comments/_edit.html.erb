@@ -1,22 +1,28 @@
-
-
-<%= form_for(comment, url: topic_post_comment_path(topic, post, comment), authenticity_token: true, remote: true, html: { id: "comment-update-form", multipart: true }) do |f| %>
-  <h1 class="text-center">
+<%= form_for(comment, url: topic_post_comment_path(post.topic, post, comment), authenticity_token: true, remote: true, html: { id: "comment-update-form", data: { id: @comment.id }, multipart: true }) do |f| %>
+<h1 class="text-center">
     Edit Comment
-  </h1>
+</h1>
 
-  <div class="form-group">
-    <h4 class="text-center"> Comment Image </h4>
+<div class="form-group">
+    <h4 class="text-center">
+        Comment Image
+    </h4>
     <div id="preview-image">
-      <% if comment.image? %>
+        <% if comment.image? %>
         <%= image_tag comment.image, class: "img-settings img-responsive center-block" %>
-      <% end %>
+        <% end %>
     </div>
     <%= f.file_field :image, id: "comment_image_field", class: 'form-control image-uploader' %>
 
-    <h4> <%= f.label :body_field, "Body" %> </h4>
+    <h4>
+        <%= f.label :body_field, "Body" %>
+    </h4>
     <%= f.text_field :body, required: true, id: "comment_body_field", class: 'form-control' %>
-
-    <%= f.submit "Update Comment", class: "btn btn-success btn-lg" %>
-  </div>
+</div>
+<div class="form-group">
+    <%= f.submit "Update Comment", class: "btn btn-success btn-lg", data: { id: @comment.id } %>
+    <div class="cancel-button btn btn-success btn-lg" data-id="<%= @comment.id %>">
+      Cancel
+    </div>
+</div>
 <% end %>
