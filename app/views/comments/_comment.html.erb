@@ -1,5 +1,14 @@
 <div class="comment flex-child <%=extra_class%>" data-id="<%=comment.id%>">
 
+    <h4>Vote Count: <span class="votes"><%= comment.total_votes(comment.id) %></span></h4>
+    <% if comment.user == current_user %>
+      <%= link_to upvote_path(comment_id: comment.id), method: :post, remote: true do %>
+      <%= fa_icon 'arrow-up 2x', class: 'btn btn-success btn-lg' %>
+      <% end %>
+      <%= link_to downvote_path(comment_id: comment.id), method: :post, remote: true do %>
+      <%= fa_icon 'arrow-down 2x', class: 'btn btn-success btn-lg' %>
+      <% end %>
+    <% end %>
   <h4><%= comment.body %></h4>
   <div class="form-group">
     <% if comment.image? %>

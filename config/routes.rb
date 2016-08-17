@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :password_resets, only: [:new, :create, :edit, :update]
   mount ActionCable.server => '/cable'
+  post :upvote, to: 'votes#upvote'
+  post :downvote, to: 'votes#downvote'
 
   # get :resetpassword, to: 'password_resets#new'
   # post :password_resets, to: 'password_resets#edit'

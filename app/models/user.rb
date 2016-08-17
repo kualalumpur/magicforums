@@ -7,4 +7,5 @@ class User < ApplicationRecord
   validates :email, length: { minimum: 10 }, presence: true
   validates :username, length: { minimum: 5 }, presence: true
   enum role: [:user, :moderator, :admin]
+  has_many :votes
 end
