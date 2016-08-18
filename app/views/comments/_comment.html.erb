@@ -1,21 +1,25 @@
 <div class="comment flex-child <%=extra_class%>" data-id="<%=comment.id%>">
 
-    <h4>Vote Count: <span class="votes"><%= comment.total_votes(comment.id) %></span></h4>
-    <% if comment.user == current_user %>
-      <%= link_to upvote_path(comment_id: comment.id), method: :post, remote: true do %>
-      <%= fa_icon 'arrow-up 2x', class: 'btn btn-success btn-lg' %>
-      <% end %>
-      <%= link_to downvote_path(comment_id: comment.id), method: :post, remote: true do %>
-      <%= fa_icon 'arrow-down 2x', class: 'btn btn-success btn-lg' %>
-      <% end %>
-    <% end %>
   <h4><%= comment.body %></h4>
   <div class="form-group">
     <% if comment.image? %>
     <%= image_tag comment.image, class: "img-settings img-responsive center-block" %>
     <% end %>
   </div>
-  <div class="form-group control-panel">
+  <% if current_user %>
+    <%= link_to upvote_path(comment_id: comment.id), method: :post, remote: true do %>
+    <%= fa_icon 'arrow-up 2x', class: 'btn btn-success btn-lg' %>
+    <% end %>
+  <% end %>
+  <span class="votes btn btn-default btn-lg">
+    <%= pluralize(comment.total_votes(comment.id), 'vote') %>
+  </span>
+  <% if current_user %>
+    <%= link_to downvote_path(comment_id: comment.id), method: :post, remote: true do %>
+    <%= fa_icon 'arrow-down 2x', class: 'btn btn-success btn-lg' %>
+    <% end %>
+  <% end %>
+  <span class="form-group control-panel">
     <% if comment.user == current_user %>
       <%= link_to edit_topic_post_comment_path(post.topic, post, comment), remote: true do %>
       <%= fa_icon 'edit 2x', class: 'btn btn-success btn-lg' %>
@@ -26,5 +30,5 @@
       <%= fa_icon 'trash 2x', class: 'btn btn-success btn-lg' %>
       <% end %>
     <% end %>
-  </div>
+  </span>
 </div>

@@ -3,6 +3,7 @@ class VotesController < ApplicationController
   before_action :authenticate!, only: [:upvote, :downvote]
 
   def upvote
+    @comment = Comment.find_by(id: params[:comment_id])
     @vote = current_user.votes.find_or_create_by(comment_id: params[:comment_id])
 
     if @vote
@@ -15,6 +16,7 @@ class VotesController < ApplicationController
   end
 
   def downvote
+    @comment = Comment.find_by(id: params[:comment_id])
     @vote = current_user.votes.find_or_create_by(comment_id: params[:comment_id])
 
     if @vote

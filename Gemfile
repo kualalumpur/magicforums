@@ -35,6 +35,8 @@ gem 'remotipart', github: 'sr3d/remotipart'
 gem 'kaminari'
 
 gem 'redis', '~>3.2'
+
+gem 'friendly_id', github: 'norman/friendly_id'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks

@@ -8,4 +8,6 @@ class User < ApplicationRecord
   validates :username, length: { minimum: 5 }, presence: true
   enum role: [:user, :moderator, :admin]
   has_many :votes
+  extend FriendlyId
+  friendly_id :username, use: [:slugged, :finders]
 end
