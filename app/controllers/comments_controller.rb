@@ -13,12 +13,12 @@ class CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @topic = @post.topic
     # @comment = Comment.new(comment_params.merge(post_id: params[:post_id]))
-    @comment = current_user.comments.build(comment_params.merge(post_id: params[:post_id]))
+    @comment = current_user.comments.build(comment_params.merge(post_id: @post.id))
     @new_comment = Comment.new
 
     if @comment.save
-      CommentBroadcastJob.perform_later("create", @comment)
       flash.now[:success] = "You've created a new comment."
+      CommentBroadcastJob.set(wait: 0.1.seconds).perform_later("create", @comment)
     else
       flash.now[:danger] = @comment.errors.full_messages
     end
@@ -53,7 +53,7 @@ class CommentsController < ApplicationController
 
     if @comment.destroy
       flash.now[:success] = "You've deleted the comment."
-      CommentBroadcastJob.perform_now("destroy", @comment)
+      CommentBroadcastJob.set(wait: 0.1.seconds).perform_later("destroy", @comment)
     end
   end
 

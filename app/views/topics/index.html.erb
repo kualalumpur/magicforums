@@ -2,7 +2,7 @@
   <!-- topics page html in here -->
   <div class="flex-child text-center">
     <h1>Topics</h1>
-    <%= link_to 'Add New Topic', new_topic_path, :class => 'btn btn-success btn-lg' %>
+    <!-- <%= link_to 'Add New Topic', new_topic_path, :class => 'btn btn-success btn-lg' %> -->
   </div>
 
   <div class="flex-parent text-center">
@@ -12,9 +12,11 @@
       <% end %>
     </div>
 
-    <div id="topics-form-container">
-      <%= render partial: "form", locals: { topic: @topic } %>
-    </div>
+    <% if current_user&.admin? || current_user&.moderator? %>
+      <div id="topics-form-container">
+        <%= render partial: "form", locals: { topic: @topic } %>
+      </div>
+    <% end %>
 
   </div>
 

@@ -10,4 +10,10 @@ class User < ApplicationRecord
   has_many :votes
   extend FriendlyId
   friendly_id :username, use: [:slugged, :finders]
+
+  before_save :check_slug
+
+  def check_slug
+    self.slug = username if self.slug != username
+  end
 end

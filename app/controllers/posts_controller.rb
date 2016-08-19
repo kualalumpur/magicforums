@@ -11,7 +11,7 @@ class PostsController < ApplicationController
   def create
     @topic = Topic.find(params[:topic_id])
     # @post = Post.new(post_params.merge(topic_id: params[:topic_id]))
-    @post = current_user.posts.build(post_params.merge(topic_id: params[:topic_id]))
+    @post = current_user.posts.build(post_params.merge(topic_id: @topic.id))
     @new_post = Post.new
 
     if @post.save

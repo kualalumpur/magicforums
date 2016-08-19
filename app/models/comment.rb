@@ -9,4 +9,5 @@ class Comment < ApplicationRecord
   def total_votes(comment_id)
     Vote.where(comment_id: comment_id).sum(:value)
   end
+
 end

@@ -8,4 +8,10 @@ class Post < ApplicationRecord
   paginates_per 3
   extend FriendlyId
   friendly_id :title, use: [:slugged, :finders]
+
+  before_save :check_slug
+
+  def check_slug
+    self.slug = title if self.slug != title
+  end
 end
