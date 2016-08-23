@@ -11,13 +11,13 @@ class ApplicationController < ActionController::Base
 
   def current_user
     return unless session[:id]
-    @user ||= User.find_by(id: session[:id])
+    @current_user ||= User.find_by(id: session[:id])
   end
   helper_method :current_user
 
   def authenticate!
     unless current_user
-      redirect_to topics_path
+      redirect_to root_path
       flash[:danger] = "You need to login first."
     end
   end
