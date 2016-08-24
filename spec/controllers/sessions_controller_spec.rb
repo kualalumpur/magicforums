@@ -18,7 +18,7 @@ RSpec.describe SessionsController, type: :controller do
     end
   end
 
-  describe "create session" do
+  describe "destroy session" do
     it "should destroy session" do
 
       post :create, params: { user: {email: @user.email, password: @user.password} }
