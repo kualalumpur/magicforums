@@ -4,8 +4,8 @@ class User < ApplicationRecord
   has_many :posts
   has_many :comments
   mount_uploader :image, ImageUploader
-  validates :email, length: { minimum: 10 }, presence: true
-  validates :username, length: { minimum: 5 }, presence: true
+  validates :email, length: { minimum: 10 }, presence: true, uniqueness: true
+  validates :username, length: { minimum: 5 }, presence: true, uniqueness: true
   enum role: [:user, :moderator, :admin]
   has_many :votes
   extend FriendlyId

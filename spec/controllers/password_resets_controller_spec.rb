@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe PasswordResetsController, type: :controller do
   before(:all) do
-    @user = User.create({email: "testRSpec@testRSpec.com", password: "testRSpec", username: "testRSpec"})
+    @user = create(:user)
   end
 
   describe "new reset password" do

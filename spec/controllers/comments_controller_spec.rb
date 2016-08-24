@@ -2,12 +2,12 @@ require 'rails_helper'
 
 RSpec.describe CommentsController, type: :controller do
   before(:all) do
-    @admin = User.create({email: "adminRSpec@adminRSpec.com", password: "adminRSpec", username: "adminRSpec", role: "admin"})
-    @user = User.create({email: "testRSpec@testRSpec.com", password: "testRSpec", username: "testRSpec"})
-    @unauthorized_user = User.create({email: "testRSpec2@testRSpec2.com", password: "testRSpec2", username: "testRSpec2"})
-    @topic = Topic.create({title: "Topic Title 1", description: "Topic Description Topic Description 1", user_id: @admin.id})
-    @post = Post.create({title: "Post Title 1", body: "Post Body Post Body 1", user_id: @user.id, topic_id: @topic.id})
-    @comment = Comment.create({body: "Comment Body Comment Body 1", user_id: @user.id, post_id: @post.id})
+    @admin = create(:user, :admin)
+    @user = create(:user, :sequenced_username, :sequenced_email)
+    @unauthorized_user = create(:user, :sequenced_username, :sequenced_email)
+    @topic = create(:topic)
+    @post = create(:post, topic_id: @topic.id)
+    @comment = create(:comment, post_id: @post.id, user_id: @user.id)
   end
 
   describe "index comment" do

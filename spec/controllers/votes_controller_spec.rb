@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe VotesController, type: :controller do
   before(:all) do
-    @user = User.create({email: "testRSpec@testRSpec.com", password: "testRSpec", username: "testRSpec"})
-    @comment = Comment.create({body: "Comment Body Comment Body 1", user_id: @user.id})
+    @user = create(:user, :sequenced_username, :sequenced_email)
+    @comment = create(:comment)
   end
 
   describe "upvote comment" do

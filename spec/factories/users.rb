@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :user do
     email "user@email.com"
-    username "bob"
+    username "bob555"
     password "password"
   end
   trait :with_image do
@@ -13,7 +13,7 @@ FactoryGirl.define do
   end
 
   trait :sequenced_username do
-    sequence(:username) { |n| "username#{n}@email.com" }
+    sequence(:username) { |n| "username#{n}" }
   end
 
   trait :admin do

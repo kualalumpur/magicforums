@@ -2,11 +2,11 @@ require 'rails_helper'
 
 RSpec.describe PostsController, type: :controller do
   before(:all) do
-    @admin = User.create({email: "adminRSpec@adminRSpec.com", password: "adminRSpec", username: "adminRSpec", role: "admin"})
-    @topic = Topic.create({title: "Topic Title 1", description: "Topic Description Topic Description 1", user_id: @admin.id})
-    @user = User.create({email: "testRSpec@testRSpec.com", password: "testRSpec", username: "testRSpec"})
-    @unauthorized_user = User.create({email: "testRSpec2@testRSpec2.com", password: "testRSpec2", username: "testRSpec2"})
-    @post = Post.create({title: "Post Title 1", body: "Post Body Post Body 1", user_id: @user.id, topic_id: @topic.id})
+    @admin = create(:user, :admin)
+    @topic = create(:topic)
+    @user = create(:user)
+    @unauthorized_user = create(:user, :sequenced_username, :sequenced_email)
+    @post = create(:post, topic_id: @topic.id, user_id: @user.id)
   end
 
   describe "index post" do
