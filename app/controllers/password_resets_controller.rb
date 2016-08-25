@@ -9,12 +9,14 @@ class PasswordResetsController < ApplicationController
     if user
       user.update(password_reset_token: password_token, password_reset_at: DateTime.now)
       PasswordResetsMailer.password_reset_mail(user).deliver_now
-      flash[:success] = "We've sent you instructions on how to reset your password"
+      flash[:success] = "We've sent you instructions on how to reset your password."
+      redirect_to topics_path
     else
-      flash[:danger] = "User does not exist"
+      flash[:danger] = "User does not exist."
+      redirect_to new_password_reset_path
     end
 
-    redirect_to new_password_reset_path
+
   end
 
   def edit

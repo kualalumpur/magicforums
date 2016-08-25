@@ -1,5 +1,6 @@
 $('#flash-messages-container').html("<%=j render partial: 'partials/flash_messages' %>")
 
-  <% if @comment.persisted? %>
-    $('#comments-form-container').html("<%=j render partial: 'comments/form', locals: { comment: @new_comment, post: @post } %>")
-  <% end %>
+// have to remove the ajax below otherwise the flash message above and newly created comment wont show when action cable is on, problematic during feature test
+  // <% if @comment.persisted? %>
+  //   $('#comments-form-container').html("<%=j render partial: 'comments/form', locals: { comment: @new_comment, post: @post } %>")
+  // <% end %>
