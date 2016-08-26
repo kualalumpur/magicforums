@@ -5,19 +5,16 @@
     <!-- <%= link_to 'Add New Topic', new_topic_path, :class => 'btn btn-success btn-lg' %> -->
   </div>
 
-  <div class="flex-parent text-center">
-    <div id="topics">
+  <div id="topics" class="flex-parent text-center">
       <% @topics.each do |topic| %>
         <%= render partial: "topic", locals: { topic: topic } %>
       <% end %>
-    </div>
-
-    <% if current_user&.admin? || current_user&.moderator? %>
-      <div id="topics-form-container">
-        <%= render partial: "form", locals: { topic: @topic } %>
-      </div>
-    <% end %>
-
   </div>
+
+  <% if current_user&.admin? || current_user&.moderator? %>
+    <div id="topics-form-container" class="flex-parent text-center">
+      <%= render partial: "form", locals: { topic: @topic } %>
+    </div>
+  <% end %>
 
 </div>

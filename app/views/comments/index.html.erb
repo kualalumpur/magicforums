@@ -6,18 +6,14 @@
     <%= paginate @comments %>
   </div>
 
-  <div class="flex-parent text-center">
+  <div id="comments" class="flex-parent text-center">
+    <% @comments.each do |comment| %>
+      <%= render partial: "comment", locals: {comment: comment, post: @post, extra_class: ''} %>
+    <% end %>
+  </div>
 
-    <div id="comments">
-      <% @comments.each do |comment| %>
-        <%= render partial: "comment", locals: {comment: comment, post: @post, extra_class: ''} %>
-      <% end %>
-    </div>
-
-    <div id="comments-form-container">
-      <%= render partial: "form", locals: { comment: @comment, post: @post } %>
-    </div>
-
+  <div id="comments-form-container" class="flex-parent text-center">
+    <%= render partial: "form", locals: { comment: @comment, post: @post } %>
   </div>
 
 </div>
